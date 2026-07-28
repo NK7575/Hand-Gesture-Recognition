@@ -1,0 +1,211 @@
+| Emoji | Unicode Name                             | Common Meaning                      |
+| ----- | ---------------------------------------- | ----------------------------------- |
+| 👋    | Waving Hand                              | Hello, goodbye                      |
+| 🤚    | Raised Back of Hand                      | Stop, wait                          |
+| 🖐️   | Hand with Fingers Splayed                | Hi, stop, high five                 |
+| ✋     | Raised Hand                              | Stop, raise hand, volunteer         |
+| 🖖    | Vulcan Salute                            | Live long and prosper, geek culture |
+| 🫱    | Rightwards Hand                          | Handshake, reaching                 |
+| 🫲    | Leftwards Hand                           | Handshake, receiving                |
+| 🫳    | Palm Down Hand                           | Drop it, calm down, lower           |
+| 🫴    | Palm Up Hand                             | Offering, presenting, asking        |
+| 🫷    | Leftwards Pushing Hand                   | Push away, no                       |
+| 🫸    | Rightwards Pushing Hand                  | Push away, back off                 |
+| 👌    | OK Hand                                  | Okay, perfect                       |
+| 🤌    | Pinched Fingers                          | "What?", Italian gesture, emphasis  |
+| 🤏    | Pinching Hand                            | Tiny amount                         |
+| ✌️    | Victory Hand                             | Peace, victory                      |
+| 🤞    | Crossed Fingers                          | Good luck, hope                     |
+| 🫰    | Hand with Index Finger and Thumb Crossed | Finger heart, affection             |
+| 🤟    | Love-You Gesture                         | I love you (ASL), affection         |
+| 🤘    | Sign of the Horns                        | Rock on, metal                      |
+| 🤙    | Call Me Hand                             | Call me, hang loose                 |
+| 👈    | Backhand Index Pointing Left             | Look left, that one                 |
+| 👉    | Backhand Index Pointing Right            | Look right, this one                |
+| 👆    | Backhand Index Pointing Up               | Above, one moment                   |
+| 🖕    | Middle Finger                            | Insult                              |
+| 👇    | Backhand Index Pointing Down             | Below, here                         |
+| ☝️    | Index Pointing Up                        | One point, attention                |
+| 👍    | Thumbs Up                                | Yes, good, approve                  |
+| 👎    | Thumbs Down                              | No, disapprove                      |
+| ✊     | Raised Fist                              | Power, solidarity                   |
+| 👊    | Oncoming Fist                            | Fist bump, punch                    |
+| 🤛    | Left-Facing Fist                         | Fist bump                           |
+| 🤜    | Right-Facing Fist                        | Fist bump                           |
+| 👏    | Clapping Hands                           | Applause, well done                 |
+| 🙌    | Raising Hands                            | Celebration, praise                 |
+| 👐    | Open Hands                               | Hug, welcome, openness              |
+| 🤲    | Palms Up Together                        | Prayer, offering, asking            |
+| 🙏    | Folded Hands                             | Please, thank you, prayer, respect  |
+| 🤝    | Handshake                                | Agreement, partnership              |
+| 💪    | Flexed Biceps                            | Strength, determination             |
+
+
+*Confidence threshold - to be mentioned in the display itself
+*multiple hands - display "mulptiple hands in frame..cannot track"
+*show on video and create a text on a side panel
+
+
+STEP 1
+GESTURE detection
+
+*mediapipe
+Landmarks (0-20):
+0 = Wrist
+1-4 = Thumb (base to tip)
+5-8 = Index finger
+9-12 = Middle finger
+13-16 = Ring finger
+17-20 = Pinky finger
+
+*the gestureDetector object stores the hand detector, drawing utilities and functions to detect hands
+mp
+│
+└── solutions
+      │
+      ├── hands
+      ├── face_mesh
+      ├── pose
+      └── selfie_segmentation
+*you can use face mesh for face detection
+
+*Static image mode = False --> mediapipe tracks the previously tracked hand
+*if..Static image mode = True --> mediapipe scans every image from scratch
+
+results
+│
+├── Hand 1
+│      ├── Landmark 0
+│      ├── Landmark 1
+│      ├── ...
+│      └── Landmark 20
+│
+└── Hand 2
+       ├── Landmark 0
+       ├── ...
+       └── Landmark 20
+
+#sampleLadmarks
+[landmark {
+  x: 0.0456766337
+  y: 0.793604076
+  z: 9.86674308e-007
+}
+landmark {
+  x: 0.183079511
+  y: 0.833117723
+  z: -0.0629808456
+}
+landmark {
+  x: 0.326618582
+  y: 0.813655794
+  z: -0.0856964886
+}
+landmark {
+  x: 0.436238706
+  y: 0.768244863
+  z: -0.104585439
+}
+landmark {
+  x: 0.523428202
+  y: 0.732689
+  z: -0.121545389
+}
+landmark {
+  x: 0.351136714
+  y: 0.530905843
+  z: -0.0250389334
+}
+landmark {
+  x: 0.451281518
+  y: 0.426428497
+  z: -0.0588704608
+}
+landmark {
+  x: 0.513611794
+  y: 0.355346918
+  z: -0.0938772932
+}
+landmark {
+  x: 0.569101095
+  y: 0.287091702
+  z: -0.120884031
+}
+landmark {
+  x: 0.29678604
+  y: 0.448893875
+  z: -0.0216957536
+}
+landmark {
+  x: 0.384890497
+  y: 0.309223473
+  z: -0.0503505729
+}
+landmark {
+  x: 0.439952672
+  y: 0.212611496
+  z: -0.0853142
+}
+landmark {
+  x: 0.48633498
+  y: 0.126974761
+  z: -0.11278031
+}
+landmark {
+  x: 0.226047367
+  y: 0.404333532
+  z: -0.0281322803
+}
+landmark {
+  x: 0.297053367
+  y: 0.265393674
+  z: -0.0612477437
+}
+landmark {
+  x: 0.343265504
+  y: 0.170909733
+  z: -0.0920382366
+}
+landmark {
+  x: 0.384496272
+  y: 0.083452493
+  z: -0.113823965
+}
+landmark {
+  x: 0.14037703
+  y: 0.385867536
+  z: -0.0413006209
+}
+landmark {
+  x: 0.184746623
+  y: 0.266649157
+  z: -0.0753188431
+}
+landmark {
+  x: 0.212845534
+  y: 0.185284972
+  z: -0.0945075154
+}
+landmark {
+  x: 0.242192209
+  y: 0.105334669
+  z: -0.106715113
+}
+]
+
+
+TIP → End of the finger (the nail)
+DIP → Distal Interphalangeal joint (joint closest to the fingertip)
+PIP → Proximal Interphalangeal joint (middle knuckle)
+MCP → Metacarpophalangeal joint (where the finger joins the hand)
+
+
+#TRAINING THE MODEL
+Common choices:
+  K-Nearest Neighbors (KNN)
+  Random Forest
+  Support Vector Machine (SVM)
+  Neural Network
+
+
+  

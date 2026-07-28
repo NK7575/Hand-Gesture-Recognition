@@ -1,0 +1,5 @@
+Modules required are..
+opencv - webcam handling
+mediapipe - google ai library for detecting hands, faces and poses
+numpy - for numerical operations
+pillow - image processing for gui
